@@ -1,0 +1,244 @@
+@font-face {
+    font-family: 'Minecraft-Seven_v2';
+    src: url('https://www.minecraft.net/etc.clientlibs/minecraftnet/clientlibs/clientlib-site/resources/fonts/Minecraft-Seven_v2.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    font-family: 'Minecraft-Seven_v2', '@Unifont', 'Unifont', 'Courier New', Courier, monospace;
+}
+
+@keyframes gradientFlow {
+	0%, 100% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+}
+body {
+	margin: 0;
+	background: linear-gradient(45deg, #280000, #281800, #242800, #032800, #000428, #280023, #280000);
+	background-size: 400% 400%; /* 放大背景以便动画移动 */
+	animation: gradientFlow 50s ease infinite; /* 动画名称、持续时间、缓动函数和无限循环 */
+	width: 100%; /* 宽度100% */ height: 100vh;
+}
+
+div.main {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin: 5px;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2),
+                0 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+div.center_temp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin: 5px;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2),
+                0 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+div.footer {
+	text-align: center;
+}
+
+.grayscale-mode {
+    filter: grayscale(100%) !important;
+    -webkit-filter: grayscale(100%) !important;
+}
+
+a {
+    color: blue;
+}
+
+button, input[type="text"], input[type="email"], input[type="password"] {
+    height: 2em;
+    border: none;
+    color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2),
+                0 1px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: .3s all ease-in-out;
+    margin: 3px;
+}
+
+button {
+    cursor: pointer;
+    width: 6rem;
+}
+
+button:hover {
+    text-shadow: 0 0 5px cyan,
+                 0 0 10px cyan,
+                 0 0 15px cyan,
+                 0 0 20px cyan;
+}
+
+/* button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #FCFCFC;
+    z-index: -114514;
+    filter: blur(5px);
+} */
+
+/* button:hover::after {
+    animation: stretching 0.3s ease-in-out forwards;
+} */
+
+/* button:not(button:hover)::after {
+    animation: unstretching 0.3s ease-in-out forwards;
+} */
+
+button, input, textarea {
+    border-radius: 3px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 15rem;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+textarea {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 500px;
+    height: 309px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2),
+                0 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+ul li {
+    text-align: left;
+}
+
+ul.passages_view li {
+    position: relative;
+    margin: 10px;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2),
+                0 1px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+ul.passages_view li:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
+                0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+
+button.del_psg_confirm {
+    color: rgba(255, 0, 0, 0.75)!important;
+    width: 10rem!important;
+}
+
+button.del_psg_confirm:hover {
+    /* background-color: rgba(255, 64, 64, 0.75)!important; */
+    text-shadow: 0 0 5px tomato,
+                 0 0 10px tomato,
+                 0 0 15px tomato,
+                 0 0 20px tomato;
+}
+
+button.change_colormode_button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    
+    position: fixed;
+    top: 0%;
+    left: 100%;
+    transform: translate(-100%, 0%) translate(-23px, 23px);
+}
+
+/* button.del_psg_confirm::after {
+    background-color: rgba(255, 164, 180, 0.75);
+} */
+
+/* button.del_psg_confirm:hover::after {
+    animation: stretching_shinning .6s ease-in-out forwards;
+    width: 100%;
+    box-shadow: 0 0 10px red,
+    0 0 20px red,
+    0 0 30px red;
+} */
+
+form {
+    margin: 0;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+/* Reserved keyframes animation */
+@keyframes color_transition {
+    0% {background-color: red;}
+    8.33% {background-color: orange;}
+    16.67% {background-color: yellow;}
+    25% {background-color: rgb(165, 255, 0);}
+    33.33% {background-color: rgb(0, 255, 0);}
+    41.67% {background-color: rgb(0, 255, 165);}
+    50% {background-color: rgb(0, 255, 255);}
+    58.33% {background-color: rgb(0, 165, 255);}
+    66.67% {background-color: rgb(0, 0, 255);}
+    75% {background-color: rgb(165, 0, 255);}
+    83.33% {background-color: rgb(255, 0, 255);}
+    91.67% {background-color: rgb(255, 0, 165);}
+    100%  {background-color: red;}
+}
+
+/* Dark mode styles */
+
+
+.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6,
+.dark-mode p, .dark-mode label, .dark-mode button, .dark-mode small, .dark-mode li, .footer {
+    color: white;
+}
+.dark-mode button {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+.dark-mode button:hover {
+    background-color: rgba(128, 128, 128, 0.75);
+}
+/* button::after {
+    background-color: grey;
+} */
+/* button.del_psg_confirm::after {
+    background-color: rgba(128, 0, 128, 0.75);
+} */
+.dark-mode input[type="text"], .dark-mode input[type="email"], .dark-mode input[type="password"], .dark-mode textarea {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+.dark-mode input::placeholder {
+    color: rgb(207, 207, 207);
+}
+.dark-mode a {
+    color: cyan;
+}
+
+@media (max-width: 768px) { body { font-size: 16px; /* 增加基础字体大小以提高可读性 */ background-size: cover; /* 确保背景图像覆盖整个屏幕 */ } div.main { margin: 10px; padding: 15px; width: auto; /* 允许容器自适应宽度 */ } div.center_temp { position: relative; /* 改为相对定位以适应流动布局 */ top: auto; left: auto; transform: none; width: 90%; /* 使用百分比宽度 */ margin: 20px auto; /* 居中显示 */ } button, input[type="text"], input[type="email"], input[type="password"] { width: 100%; /* 全宽度按钮和输入框 */ margin: 5px 0; /* 调整边距 */ height: 2.5em; /* 增加高度便于触摸 */ } textarea { width: 100%; /* 全宽度文本区域 */ height: 200px; /* 调整高度 */ } ul.passages_view li { margin: 10px 0; /* 调整列表项边距 */ padding: 10px; } button.change_colormode_button { width: 40px; height: 40px; transform: translate(-100%, 0%) translate(-15px, 15px); /* 调整位置 */ } /* 调整链接和按钮的悬停效果，避免在小屏幕上误触 */ button:hover, a:hover { text-shadow: none; } }

@@ -1,0 +1,27 @@
+header {
+	background-color: #222;
+	color: white;
+	width: 100%;
+	height: auto;
+	display: flex;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	transform: translate(0%, 0%);
+	z-index: 999;
+}
+
+header p {
+	padding: 10px 26px;
+}
+
+header a {
+	padding: 26px;
+	transition: .2s all ease-in-out;
+	text-decoration: none;
+	color: white;
+}
+
+header a:hover {
+	background-color: #444;
+}

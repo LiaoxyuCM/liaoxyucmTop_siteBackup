@@ -1,0 +1,19 @@
+<p>默写π 达到100分即成功</p>
+<input type="text" forinput style="width: 800px" />
+<p display>分数：0</p>
+<script>
+var textbar = document.querySelector("input[forinput]");
+var disp = document.querySelector("p[display]");
+var pi = "3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706";
+var failed = false;
+var finished = false;
+var score = 0;
+textbar.addEventListener("input", ()=>{
+if (finished) {disp.textContent = "你赢了"; return false}
+if (textbar.value === "") {failed=false; disp.textContent="分数："+score; return false}
+if (failed) {disp.textContent = "失败 清空文本再试一遍"; return false}
+if (textbar.value[textbar.value.length-1] === pi[score]) {score +=1; disp.textContent="分数："+score; if (score >=100){finished=true; disp.textContent = "你赢了"}}
+else { disp.textContent = "失败 清空文本再试一遍"; failed=true; score=0 }
+});
+
+</script>

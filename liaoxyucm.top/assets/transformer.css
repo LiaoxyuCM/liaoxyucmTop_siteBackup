@@ -1,0 +1,21 @@
+transformer {
+	position: fixed;
+	align-items: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: .5s all ease-in-out;
+	display: flex;
+	flex-direction: column;
+}
+transformer-redirect {
+	color: #f7f;
+	text-decoration: underline;
+	transition: .3s all ease-in-out;
+	padding: 5px;
+}
+transformer-redirect:hover {
+	color: #fff;
+    text-shadow: 0 0 5px #aaa, 0 0 10px #aaa;
+	cursor: pointer;
+}

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://newsite.liaoxyucm.top/style.css">
+		<link rel="shortcut icon" href="https://assets.liaoxyucm.top/favicon.ico">
+		<title>RandomPicker | LiaoxyuCM</title>
+	</head>
+	<body>
+		<nav>
+			<a href="https://liaoxyucm.top">LiaoxyuCM</a>
+			<!-- <div class="pe">
+				<img src="/menu-outline.svg" onclick="shownav();"></img>
+			</div> -->
+			<div class="pc">
+				<a href="https://github.com/LiaoxyuCM" target="_blank">GitHub</a>
+				<a href="https://liaoxyucm.top/friendlylinks">友链</a>
+			</div>
+		</nav>
+		<main>
+			<noscript>
+				<h3>本随机数生成器几乎无法运作 因为你没打开JavaScript</h3>
+			</noscript>
+			<p>在<input type="number" class="min" placeholder="最小值" />到<input type="number" class="max" placeholder="最大值" />之间取随机整数</p>
+			<p>取<input type="number" class="count" placeholder="数量" />个</p><br>
+			<div class="buttongroup">
+				<button class="generate">生成</button>
+			</div>
+			<textarea placeholder="结果将显示在这里" class="output" readonly></textarea>
+		</main>
+        <section class="footer">
+            <p>&copy; LiaoxyuCM × LcmTech 2024-2026</p>
+        </section>
+
+		<script>
+			(function() {
+				const minInput = document.querySelector('.min');
+				const maxInput = document.querySelector('.max');
+				const countInput = document.querySelector('.count');
+				const generateBtn = document.querySelector('.generate');
+				const outputArea = document.querySelector('.output');
+
+				function removeErrorHighlight() {
+					[minInput, maxInput, countInput].forEach(input => {
+						input.classList.remove('error-highlight');
+					});
+				}
+
+				function showError(message) {
+					outputArea.value = `错误: ${message}`;
+					removeErrorHighlight();
+				}
+
+				function showResults(numbersArray) {
+					if (!numbersArray || numbersArray.length === 0) {
+						outputArea.value = '没有生成任何随机数 (个数为0)';
+						return;
+					}
+					outputArea.value = numbersArray.join(' ');
+					removeErrorHighlight();
+				}
+
+				function highlightInvalid(inputEl) {
+					inputEl.classList.add('error-highlight');
+				}
+
+				function getValidIntegerRange(minVal, maxVal, autoShowError = true) {
+					let minNum = parseFloat(minVal);
+					let maxNum = parseFloat(maxVal);
+					
+					if (isNaN(minNum)) {
+						if (autoShowError) showError('最小值必须是有效的数字 (当前为空或非数字)');
+						highlightInvalid(minInput);
+						return null;
+					}
+					if (isNaN(maxNum)) {
+						if (autoShowError) showError('最大值必须是有效的数字 (当前为空或非数字)');
+						highlightInvalid(maxInput);
+						return null;
+					}
+					let swapped = false;
+					if (minNum > maxNum) {
+						[minNum, maxNum] = [maxNum, minNum];
+						swapped = true;
+						minInput.value = minNum;
+						maxInput.value = maxNum;
+						alert('最小值不能大于最大值，已自动为您交换范围。');
+					}
+					
+					let lower = Math.ceil(minNum);
+					let upper = Math.floor(maxNum);
+					
+					if (lower > upper) {
+						if (autoShowError) showError(`范围 [${minNum}, ${maxNum}] 内没有整数可生成 (取整后下界 ${lower} > 上界 ${upper})`);
+						highlightInvalid(minInput);
+						highlightInvalid(maxInput);
+						return null;
+					}
+					
+					return { lower, upper, swapped };
+				}
+				
+				function getValidCount(countVal, autoShowError = true) {
+					let countRaw = parseFloat(countVal);
+					if (isNaN(countRaw)) {
+						if (autoShowError) showError('个数必须是有效数字 (不能为空)');
+						highlightInvalid(countInput);
+						return null;
+					}
+					if (!Number.isInteger(countRaw)) {
+						if (autoShowError) showError('个数必须为整数 (不能包含小数)');
+						highlightInvalid(countInput);
+						return null;
+					}
+					let countInt = countRaw;
+					if (countInt <= 0) {
+						if (autoShowError) showError('个数必须为正整数 (大于0)');
+						highlightInvalid(countInput);
+						return null;
+					}
+					const MAX_COUNT = 50000;
+					if (countInt > MAX_COUNT) {
+						if (autoShowError) showError(`生成个数过多 (最大支持 ${MAX_COUNT.toLocaleString()} 个)，请减少数量后重试。`);
+						highlightInvalid(countInput);
+						return null;
+					}
+					return countInt;
+				}
+				
+				function generateRandomNumbers(lower, upper, count) {
+					const rangeSize = upper - lower + 1;
+					const result = new Array(count);
+					for (let i = 0; i < count; i++) {
+						const randomValue = Math.floor(Math.random() * rangeSize) + lower;
+						result[i] = randomValue;
+					}
+					return result;
+				}
+				
+				function onGenerate() {
+					const rawMin = minInput.value.trim();
+					const rawMax = maxInput.value.trim();
+					const rawCount = countInput.value.trim();
+					
+					if (rawMin === '') {
+						showError('最小值不能为空，请输入数字');
+						highlightInvalid(minInput);
+						return;
+					}
+					if (rawMax === '') {
+						showError('最大值不能为空，请输入数字');
+						highlightInvalid(maxInput);
+						return;
+					}
+					if (rawCount === '') {
+						showError('个数不能为空，请输入正整数');
+						highlightInvalid(countInput);
+						return;
+					}
+					
+					const rangeResult = getValidIntegerRange(rawMin, rawMax, true);
+					if (!rangeResult) return;
+					
+					const { lower, upper } = rangeResult;
+					
+					const count = getValidCount(rawCount, true);
+					if (count === null) return;
+					
+					if (lower > upper) {
+						showError(`内部错误: 整数区间无效 [${lower}, ${upper}]，请调整范围。`);
+						return;
+					}
+					
+					try {
+						const randomNumbers = generateRandomNumbers(lower, upper, count);
+						showResults(randomNumbers);
+					} catch (err) {
+						console.error(err);
+						showError('生成随机数时发生未知错误，请稍后重试。');
+					}
+				}
+				
+				function initDefaultValues() {
+					if (minInput.value === '') minInput.value = '1';
+					if (maxInput.value === '') maxInput.value = '100';
+					if (countInput.value === '') countInput.value = '5';
+					
+					let initMin = parseFloat(minInput.value);
+					let initMax = parseFloat(maxInput.value);
+					if (!isNaN(initMin) && !isNaN(initMax) && initMin > initMax) {
+						[minInput.value, maxInput.value] = [maxInput.value, minInput.value];
+					}
+					
+					removeErrorHighlight();
+				}
+				
+				function autoSwapOnBlur() {
+					const minVal = parseFloat(minInput.value);
+					const maxVal = parseFloat(maxInput.value);
+					if (!isNaN(minVal) && !isNaN(maxVal) && minVal > maxVal) {
+						[minInput.value, maxInput.value] = [maxInput.value, minInput.value];
+						const tempMsg = outputArea;
+						const originalVal = tempMsg.value;
+						tempMsg.style.transition = '0.1s';
+						tempMsg.value = '范围已自动调整（最小值>最大值已交换）\n' + (originalVal.startsWith('⚡') ? originalVal.substring(originalVal.indexOf('\n')+1) : originalVal);
+						setTimeout(() => {
+							if (!originalVal.includes('点击“生成随机数”') && !originalVal.startsWith('⚡') && originalVal !== '') {
+							} else {
+								if (outputArea.value.includes('自动调整')) {
+									outputArea.value = '点击“生成随机数”生成新数列';
+								}
+							}
+						}, 1200);
+					}
+				}
+				
+				function bindEvents() {
+					generateBtn.addEventListener('click', onGenerate);
+					minInput.addEventListener('blur', autoSwapOnBlur);
+					maxInput.addEventListener('blur', autoSwapOnBlur);
+					[minInput, maxInput, countInput].forEach(input => {
+						input.addEventListener('input', () => {
+							input.classList.remove('error-highlight');
+						});
+					});
+					
+					const inputs = [minInput, maxInput, countInput];
+					inputs.forEach(input => {
+						input.addEventListener('keypress', (e) => {
+							if (e.key === 'Enter') {
+								e.preventDefault();
+								generateBtn.click();
+							}
+						});
+					});
+				}
+				
+				window.addEventListener('DOMContentLoaded', () => {
+					initDefaultValues();
+					bindEvents();
+				});
+			})();
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Starter | LiaoxyuCM</title>
+        <link rel="stylesheet" href="https://assets.liaoxyucm.top/style.css">
+		<script src="https://assets.liaoxyucm.top/global.js"></script>
+    </head>
+    <body>
+        <mainpage>
+            <h1 class="clock">Starter</h1>
+			<form class="eng-d" method="get" action="https://cn.bing.com/search" target="_blank">
+				<div style="display: flex; flex-direction: row">
+					<input type="text" name="q" class="searchbar eng-c" autocomplete="off" placeholder="Type something..."/>
+					<input type="submit" class="submit" value="GO"/>
+				</div>
+			</form>
+            <section class="links">
+				<a href="./index.html">尝试新版起始页</a>
+                <a href="https://liaoxyucm.top">主站</a>
+            </section>
+            <section class="footer">
+                <p>Engine: <a href="?engine=bing" class="eng-bing">Bing</a> <a href="?engine=baidu" class="eng-baidu">Baidu</a> <a href="?engine=github" class="eng-github">GitHub</a> <a href="?engine=google" class="eng-google">Google</a></p>
+                <p>&copy; LiaoxyuCM 2024-2026</p>
+            </section>
+        </mainpage>
+		<script>
+			var clock = document.querySelector(".clock");
+			let baseText = '';
+
+			function updateClock(){
+				const now = new Date();
+				baseText = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
+				clock.textContent = baseText;
+			}
+			updateClock();
+			setInterval(updateClock, 200);
+			function getQueryParam(name){
+				const params = new URLSearchParams(window.location.search);
+				return params.get(name);
+			};
+			document.querySelector(`.eng-${getQueryParam("engine") ? getQueryParam("engine") : "bing"}`).style.color = "rgb(51, 255, 102)";
+			if (getQueryParam("engine") === "baidu") {
+				document.querySelector("form.eng-d").setAttribute("action", "https://www.baidu.com/s");
+				document.querySelector("form.eng-d div input.eng-c").setAttribute("name", "wd");
+			}
+			if (getQueryParam("engine") === "github") {
+				document.querySelector("form.eng-d").setAttribute("action", "https://github.com/search");
+			}
+			if (getQueryParam("engine") === "google") {
+				document.querySelector("form.eng-d").setAttribute("action", "https://www.google.com/search");
+			}
+		</script>
+    </body>
+</html>

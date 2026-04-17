@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<title>纪青加密JisGreenEncryption</title>
+<meta name="keywords" content="JisGreen Encryption"/>
+<meta name="description" content="纪青加密Powered by LiaoxyuCM"/>
+<link rel="stylesheet" href="./selector_support.css" />
+<link rel="stylesheet" href="../header_support.css" />
+<link rel="stylesheet" href="./notification.css" />
+<link rel="stylesheet" href="https://lcmapi{$rthSuffix}/backgroundEffect/style.css">
+<header>
+	<p class="pc">JisGreen Encryption (JGE) / Try JGE</p>
+	<p class="pe">Try JGE</p>
+	<style>
+		/* 默认显示大屏幕的文本，隐藏小屏幕的文本 */
+		.pe {
+		display: none;
+		}
+
+		/* 在小屏幕上隐藏大屏幕的文本，显示小屏幕的文本 */
+		@media (max-width: 768px) {
+			.pc {
+				display: none;
+			}
+			.pe {
+				display: block;
+			}
+		}
+	</style>
+	<a href="https://lcm{$rthSuffix}">lcm{$rthSuffix}</a>
+	<a href="https://jge{$rthSuffix}">jge{$rthSuffix}</a>
+</header>
+<div style="height: 67px;"></div>
+<div class="dark-mode">
+	<link rel="stylesheet" href="../style.css">
+	<div class="main">
+		<textarea class="input" style="width: 100%; height: 200px;" placeholder="Original text"></textarea>
+		<br>
+		<button class="encrypt">加密 Encrypt</button>
+		<button class="decrypt">解密 Decrypt</button>
+		<select class="encryption_type">
+			<option value="JisGreen">JisGreen 纪青</option>
+			<option value="JiShi">JiShi 纪失</option>
+			<option value="JisKotlin">JisKotlin 青涩</option>
+			<option value="JisMua">JisMua 纪北</option>
+			<option value="ExcuseBox">ExcuseBox 借口盒</option>
+			<option value="Xxx">Xxx 嘉豪</option>
+			<option value="YYBH">YYBH YuanYangBiaoHack</option>
+			<option value="LTFH">LTFH</option>
+			<option value="BJWX">BJWX</option>
+			<option value="JisRmb">JisRmb 纪元</option>
+			<option value="JisBo">JisBo 纪博</option>
+			<option value="JisW">JisW 纪八</option>
+			<option value="JisSkyline">JisSkyline 天纪线</option>
+			<option value="Reallove">Reallove 纯爱</option>
+			<option value="N1010">N1010 嫌文本太长?</option>
+		</select>
+		<select class="extensions">
+			<option value="">NoExtention</option>
+			<option value="JIS2">JIS2 (@镜花水月)</option>
+		</select>
+		<button class="copy_rs" style="width: 150px">复制结果 Copy Result</button>
+		<br>
+		<textarea readonly class="output" style="width: 100%; height: 400px; color: black;" placeholder="Result"></textarea>
+	</div>
+	<script src="script.js"></script>
+</div>

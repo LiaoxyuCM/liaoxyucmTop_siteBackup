@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vote | LiaoxyuCM</title>
+        <link rel="stylesheet" href="https://assets.liaoxyucm.top/style.css">
+		<script src="https://assets.liaoxyucm.top/global.js"></script>
+    </head>
+    <body>
+        <mainpage>
+			<div bordered class="pare">
+				<p>Poppins字体好看吗</p>
+				<div class="select">
+					<button onclick="vote('agree')" >好！</button>
+					<button onclick="vote('reject')">我觉得不行</button>
+				</div>
+            </div><br>
+            <a href="/">主站</a>
+            <section class="footer">
+                <p>&copy; LiaoxyuCM 2024-2026</p>
+            </section>
+			<script>
+				let select = document.querySelector(".select");
+				function vote(d) {
+					select.innerHTML = "<p>正在投票中⏳</p>"
+					fetch(`vote.php?type=${d}`)
+						.then(resp => resp.json())
+						.then(data => {
+							select.innerHTML = `<p>${data.message}</p>`
+						})
+						.catch(e => {
+							select.innerHTML = "<p>投票失败！</p>"
+						})
+				}
+			</script>
+        </mainpage>
+    </body>
+</html>

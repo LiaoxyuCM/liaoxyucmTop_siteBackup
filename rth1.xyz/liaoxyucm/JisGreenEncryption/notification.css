@@ -1,0 +1,27 @@
+.notification {
+	padding: 5px;
+	position: fixed;
+	border-radius: 5px;
+	color: white;
+	text-align: center;
+	width: 150px;
+	top: 80%;
+	left: 100%;
+	transform: translate(-100%, -80%);
+}
+
+@keyframes fadeIn {
+	0% {
+		left: 200%;
+		transition: translate(200%, 80%);
+		opacity: 1;
+	}
+	50% {
+		left: 100%;
+		transition: translate(100%, 80%);
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}

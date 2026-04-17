@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://newsite.liaoxyucm.top/style.css">
+		<link rel="shortcut icon" href="https://assets.liaoxyucm.top/favicon.ico">
+		<script src="encode.js"></script>
+		<title>Encoder | LiaoxyuCM</title>
+	</head>
+	<body>
+		<nav>
+			<a href="https://liaoxyucm.top">LiaoxyuCM</a>
+			<!-- <div class="pe">
+				<img src="/menu-outline.svg" onclick="shownav();"></img>
+			</div> -->
+			<div class="pc">
+				<a href="https://github.com/LiaoxyuCM" target="_blank">GitHub</a>
+				<a href="https://liaoxyucm.top/friendlylinks">友链</a>
+			</div>
+		</nav>
+		<main>
+			<noscript>
+				<h3>本编码器几乎无法运作 因为你没打开JavaScript</h3>
+			</noscript>
+			<div class="buttongroup">
+				<button class="method mtd-jge selected" onclick="method('jge')">JGE</button>
+				<button class="method mtd-jis2" onclick="method('jis2')">JIS2</button>
+				<button class="method mtd-lvqichong" onclick="method('lvqichong')">吕齐冲</button>
+				<button class="method mtd-b64" onclick="method('b64')">Base64</button>
+				<button class="method mtd-b16" onclick="method('b16')">Base16</button>
+				<button class="method mtd-url" onclick="method('url')">URL</button>
+				<button class="method mtd-dataurl" onclick="method('dataurl')">Data URL</button>
+				<button class="method mtd-sha1" onclick="method('sha1')">SHA1</button>
+				<button class="method mtd-sha256" onclick="method('sha256')">SHA256</button>
+				<button class="method mtd-sha512" onclick="method('sha512')">SHA512</button>
+				<button class="method mtd-off" onclick="method('off')">偏移（+1）</button>
+				<button class="method mtd-reverse" onclick="method('reverse')">反转</button>
+				<button class="method mtd-cardshuffle" onclick="method('cardshuffle')">洗牌</button>
+				<a href="rsa"><button>RSA（仅获取公私钥）</button></a>
+			</div>
+			<textarea placeholder="输入文本" class="input"></textarea>
+			<div class="buttongroup">
+				<button class="encrypt">加密</button>
+				<button class="decrypt">解密</button>
+				<button class="clear">清空</button>
+				<button class="copy_rs">复制结果</button>
+				<button class="switch">上下对调</button>
+			</div>
+			<textarea placeholder="结果将显示在这里" class="output" readonly></textarea>
+		</main>
+        <section class="footer">
+            <p>&copy; LiaoxyuCM × LcmTech 2024-2026</p>
+        </section>
+		
+	</body>
+</html>
